@@ -16,13 +16,14 @@ var bio = {
         location: "Jersey City/NJ",
         blog: "http://revista.agapito.com.br"
     },
+    welcomeMessage : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     skills: ["Project Management", "Web Development", "MySQL", "Data Integration"],
     bioPic: "images/fry.jpg",
     display: function() {
         var formattedName = HTMLheaderName.replace("%data%", inName(bio.name));
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
         var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-        var formattedWelcome = HTMLwelcomeMsg.replace("%data%", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage );
         /*
          Display Header (name and current role)
          */
@@ -73,6 +74,87 @@ var bio = {
     }
 
 }
+
+/*
+ //////////////////////////////////////////////////////
+ EDUCATION
+ //////////////////////////////////////////////////////
+ Declaring Education variable with array of schools
+ */
+var education = {
+    schools: [
+        {
+            name: "UNIMEP",
+            location: "Piracicaba/SP/Brazil",
+            degree: "BA",
+            majors: ["Project Structure", "WBS", "PM Knowledge Areas"],
+            dates: "October 2013",
+            url: "http://www.unimep.br"
+        },
+        {
+            name: "Impacta",
+            location: "Sao Paulo/Brazil",
+            degree: "Training",
+            majors: ["Project Management", "PMBOK", "PM Knowledge Areas"],
+            dates: "October 2013",
+            url: "http://www.impacta.com.br"
+        },
+        {
+            name: "Impacta",
+            degree: "Training",
+            location: "Sao Paulo/Brazil",
+            dates: "December 2013",
+            majors: ["ITIL", "Service Desk Management", "SLA", "Incidents"],
+            url: "http://www.impacta.com.br"
+        }
+    ],
+    onlineCourses : {
+        course: [{
+            title: "Front-end Web Development",
+            school: "UDACITY",
+            dates: "May 2017",
+            url: "https://www.udacity.com.br"
+        }],
+        display: function() {
+            /*
+             Display online Courses
+             */
+            $("#education").append(HTMLonlineClasses);
+            $("#education").append(HTMLschoolStart);
+
+            education.onlineCourses.course.forEach(function(course) {
+                var link = HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school);
+
+                var date = HTMLonlineDates.replace("%data%", course.dates);
+                var url = HTMLonlineURL.replace("%data%", course.url);
+                $(".education-entry:last").append(link);
+                $(".education-entry:last").find("a").attr("href", course.url);
+                $(".education-entry").append(date);
+                $(".education-entry").append(url);
+                $(".education-entry:last").find("a").attr("href", course.url);
+                //$("#education").find("h3").append(date);
+                //$("#education").append(url  );
+
+            });
+
+        }
+    },
+    display: function() {
+        $("#education").append(HTMLschoolStart);
+        education.schools.forEach(function(educ) {
+            $(".education-entry").append(HTMLschoolName.replace("%data%", ""+educ.name) + " " + HTMLschoolDegree.replace("%data%", educ.degree));
+            $(".education-entry:last").find("a").attr("href", educ.url);
+            $(".education-entry").append(HTMLschoolDates.replace("%data%", educ.dates));
+            $(".education-entry").append(HTMLschoolLocation.replace("%data%", educ.location));
+            $(".education-entry").append(HTMLschoolMajor.replace("%data%", educ.majors));
+
+            /*
+             Display Online Courses
+             */
+        });
+        education.onlineCourses.display();
+    }
+};
 /*
  //////////////////////////////////////////////////////
  WORK EXPERIENCE
@@ -80,13 +162,14 @@ var bio = {
  Declaring Work Experience variable with array of jobs
  */
 var work = {
-    jobs: [{
-        employer: "Volvo Cars",
-        title: "IT Consultant",
-        location: "Sao Paulo/SP/Brazil",
-        dates: "April 2016 - Current",
-        description: "Working as project manager and web developer consultant for different customers."
-    },
+    jobs: [
+        {
+            employer: "Volvo Cars",
+            title: "IT Consultant",
+            location: "Sao Paulo/SP/Brazil",
+            dates: "April 2016 - Current",
+            description: "Working as project manager and web developer consultant for different customers."
+        },
         {
             employer: "Volvo Cars",
             title: "IT Coordinator",
@@ -132,8 +215,6 @@ var work = {
 var project = {
     title: "Projeto 1",
     dates: "April 2016",
-    duration: "April 2016",
-    totalOfStakeholders: "6 people",
     description: "Development of eCommerce Platform",
     images: [
         "https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97150&w=200&h=150",
@@ -150,83 +231,7 @@ var project = {
     }
 };
 
-/*
- //////////////////////////////////////////////////////
- EDUCATION
- //////////////////////////////////////////////////////
- Declaring Education variable with array of schools
- */
-var education = {
-    schools: [{
-        name: "UNIMEP",
-        degree: "BA",
-        location: "Sao Paulo/SP/Brazil",
-        date: "October 2013",
-        totalHours: 40,
-        majors: ["Project Structure", "WBS", "PM Knowledge Areas"]
-    },
-        {
-            name: "Impacta Project Management PMBOK",
-            degree: "Training",
-            location: "Sao Paulo/Brazil",
-            date: "October 2013",
-            totalHours: 40,
-            majors: ["Project Struture", "WBS", "PM Knowledge Areas"]
-        },
-        {
-            name: "ITIL",
-            degree: "Training",
-            location: "Sao Paulo/Brazil",
-            date: "December 2013",
-            totalHours: 40,
-            majors: ["IT Service Management", "IT Support", "SLA", "Incidents"]
-        }
-    ],
-    onlineCourses : {
-        course: [{
-            title: "Front-end Web Development",
-            school: "UDACITY",
-            dates: "May 2017",
-            url: "https://www.udacity.com.br"
-        }],
-        display: function() {
-            /*
-             Display online Courses
-             */
-            $("#education").append(HTMLonlineClasses);
-            $("#education").append(HTMLschoolStart)
-            education.onlineCourses.course.forEach(function(course) {
-                var link = HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school);
 
-                var date = HTMLonlineDates.replace("%data%", course.dates);
-                var url = HTMLonlineURL.replace("%data%", course.url);
-                $(".education-entry").append(link);
-                $(".education-entry:last").find("a").attr("href", course.url);
-                $(".education-entry").append(date);
-                $(".education-entry").append(url);
-                $(".education-entry:last").find("a").attr("href", course.url);
-                //$("#education").find("h3").append(date);
-                //$("#education").append(url  );
-
-            });
-
-        }
-    },
-    display: function() {
-        $("#education").append(HTMLschoolStart);
-        education.schools.forEach(function(educ) {
-            $(".education-entry").append(HTMLschoolName.replace("%data%", educ.name) + " " + HTMLschoolDegree.replace("%data%", educ.degree));
-            $(".education-entry").append(HTMLschoolDates.replace("%data%", educ.date));
-            $(".education-entry").append(HTMLschoolLocation.replace("%data%", educ.location));
-            $(".education-entry").append(HTMLschoolMajor.replace("%data%", educ.majors));
-
-            /*
-             Display Online Courses
-             */
-        });
-        education.onlineCourses.display();
-    }
-};
 /*
  //////////////////////////////////////////////////////
  Display Functions
