@@ -182,6 +182,36 @@ var education = {
             majors: ["IT Service Management", "IT Support", "SLA", "Incidents"]
         }
     ],
+    onlineCourses : {
+        course: [{
+            title: "Front-end Web Development",
+            school: "UDACITY",
+            dates: "May 2017",
+            url: "https://www.udacity.com.br"
+        }],
+        display: function() {
+            /*
+             Display online Courses
+             */
+            $("#education").append(HTMLonlineClasses);
+            $("#education").append(HTMLschoolStart)
+            education.onlineCourses.course.forEach(function(course) {
+                var link = HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school);
+
+                var date = HTMLonlineDates.replace("%data%", course.dates);
+                var url = HTMLonlineURL.replace("%data%", course.url);
+                $(".education-entry").append(link);
+                $(".education-entry:last").find("a").attr("href", course.url);
+                $(".education-entry").append(date);
+                $(".education-entry").append(url);
+                $(".education-entry:last").find("a").attr("href", course.url);
+                //$("#education").find("h3").append(date);
+                //$("#education").append(url  );
+
+            });
+
+        }
+    },
     display: function() {
         $("#education").append(HTMLschoolStart);
         education.schools.forEach(function(educ) {
@@ -189,48 +219,14 @@ var education = {
             $(".education-entry").append(HTMLschoolDates.replace("%data%", educ.date));
             $(".education-entry").append(HTMLschoolLocation.replace("%data%", educ.location));
             $(".education-entry").append(HTMLschoolMajor.replace("%data%", educ.majors));
+
+            /*
+             Display Online Courses
+             */
         });
+        education.onlineCourses.display();
     }
 };
-
-/*
- //////////////////////////////////////////////////////
- Online Courses
- //////////////////////////////////////////////////////
- Declaring online Courses
- */
-
-var onlineCourses = {
-    course: [{
-        title: "Front-end Web Development",
-        school: "UDACITY",
-        dates: "May 2017",
-        url: "https://www.udacity.com.br"
-    }],
-    display: function() {
-        /*
-         Display online Courses
-         */
-        $("#education").append(HTMLonlineClasses);
-        $("#education").append(HTMLschoolStart)
-        onlineCourses.course.forEach(function(course) {
-            var link = HTMLonlineTitle.replace("%data%", course.title) + HTMLonlineSchool.replace("%data%", course.school);
-
-            var date = HTMLonlineDates.replace("%data%", course.dates);
-            var url = HTMLonlineURL.replace("%data%", course.url);
-            $(".education-entry").append(link);
-            $(".education-entry:last").find("a").attr("href", course.url);
-            $(".education-entry").append(date);
-            $(".education-entry").append(url);
-            $(".education-entry:last").find("a").attr("href", course.url);
-            //$("#education").find("h3").append(date);
-            //$("#education").append(url  );
-
-        });
-
-    }
-};
-
 /*
  //////////////////////////////////////////////////////
  Display Functions
@@ -259,11 +255,6 @@ project.display();
  */
 education.display();
 
-/*
- Display Online Courses
- */
-onlineCourses.display();
-
 
 //$("#main").append(internationalizeButton);
 
@@ -274,9 +265,6 @@ onlineCourses.display();
  Display Google Mapos
  */
 $("#mapDiv").append(googleMap);
-
-
-
 
 /*
  /////////////////////////////////////////////////////////
