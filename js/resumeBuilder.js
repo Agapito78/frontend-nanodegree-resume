@@ -87,8 +87,8 @@ var education = {
             name: "UNIMEP",
             location: "Piracicaba/SP/Brazil",
             degree: "BA",
-            majors: ["Project Structure", "WBS", "PM Knowledge Areas"],
-            dates: "October 2013",
+            majors: ["System Information", "IT"],
+            dates: "October 2002",
             url: "http://www.unimep.br"
         },
         {
@@ -129,8 +129,8 @@ var education = {
                 var url = HTMLonlineURL.replace("%data%", course.url);
                 $(".education-entry:last").append(link);
                 $(".education-entry:last").find("a").attr("href", course.url);
-                $(".education-entry").append(date);
-                $(".education-entry").append(url);
+                $(".education-entry:last").append(date);
+                $(".education-entry:last").append(url);
                 $(".education-entry:last").find("a").attr("href", course.url);
                 //$("#education").find("h3").append(date);
                 //$("#education").append(url  );
@@ -143,7 +143,7 @@ var education = {
         $("#education").append(HTMLschoolStart);
         education.schools.forEach(function(educ) {
             $(".education-entry").append(HTMLschoolName.replace("%data%", ""+educ.name) + " " + HTMLschoolDegree.replace("%data%", educ.degree));
-            $(".education-entry:last").find("a").attr("href", educ.url);
+            $(".education-entry:last").find("a:last").attr("href", educ.url);
             $(".education-entry").append(HTMLschoolDates.replace("%data%", educ.dates));
             $(".education-entry").append(HTMLschoolLocation.replace("%data%", educ.location));
             $(".education-entry").append(HTMLschoolMajor.replace("%data%", educ.majors));
