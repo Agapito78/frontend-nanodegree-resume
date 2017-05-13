@@ -49,7 +49,7 @@ var bio = {
          */
         var formattedHTMLmobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
         var formattedHTMLemail = HTMLemail.replace("%data%", bio.contacts.email);
-        var formattedHTMLtwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+        //var formattedHTMLtwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
         var formattedHTMLgithub = HTMLgithub.replace("%data%", bio.contacts.github);
         var formattedHTMLblog = HTMLblog.replace("%data%", bio.contacts.blog);
         var formattedHTMLlocation = HTMLlocation.replace("%data%", bio.contacts.location);
@@ -73,7 +73,7 @@ var bio = {
         $("#footerContacts").append(formattedHTMLlocation);
     }
 
-}
+};
 
 /*
  //////////////////////////////////////////////////////
@@ -204,7 +204,7 @@ var work = {
             });
         }
     }
-}
+};
 
 /*
  //////////////////////////////////////////////////////
@@ -277,12 +277,12 @@ $("#mapDiv").append(googleMap);
  /////////////////////////////////////////////////////////
  */
 $(document).click(function(loc) {
-    if (loc == null) {
-        loc = window.event
+    if (loc === null) {
+        loc = window.event;
     }
     var _mouseX = loc.clientX;
     var _mouseY = loc.clientY;
-    logClicks(_mouseX, _mouseY)
+    logClicks(_mouseX, _mouseY);
 });
 
 
